@@ -7,11 +7,21 @@ import theme from 'utils/theme'
 import './index.css'
 import App from './app/App'
 
-ReactDOM.render(
-  <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
-  </React.StrictMode>,
-  document.getElementById('root')
-)
+class CRABoilerplate extends HTMLElement {
+  connectedCallback() {
+    this.render()
+  }
+
+  private render() {
+    ReactDOM.render(
+      <React.StrictMode>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </React.StrictMode>,
+      this
+    )
+  }
+}
+
+customElements.define('cra-boilerplate', CRABoilerplate)
